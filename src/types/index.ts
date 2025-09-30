@@ -36,7 +36,7 @@ export interface Order {
   referralCode?: string;
   files: OrderFile[];
   completedFiles: OrderFile[];
-  formData: Record<string, any>;
+  formData: Record<string, string | number | boolean>;
   paymentDetails?: PaymentDetails;
   notes?: string;
   adminNotes?: string;

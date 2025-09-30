@@ -5,20 +5,19 @@ import { useParams, useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { services, sampleFormFields } from '@/lib/seed-data';
 import { formatCurrency } from '@/lib/utils';
-import { ArrowLeft, Upload, FileText, CreditCard, CheckCircle, Clock, Shield, Smartphone, AlertCircle, Info } from 'lucide-react';
+import { ArrowLeft, Upload, FileText, CreditCard, CheckCircle, Clock, Shield, Smartphone } from 'lucide-react';
 import Link from 'next/link';
 
 export default function OrderPage() {
   const params = useParams();
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
-  const [service, setService] = useState<any>(null);
+  const [service, setService] = useState<typeof services[0] | null>(null);
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [formData, setFormData] = useState<Record<string, string>>({});
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [phoneNumber, setPhoneNumber] = useState('');
 
@@ -28,7 +27,7 @@ export default function OrderPage() {
       const foundService = services.find(s => 
         s.title.toLowerCase().replace(/\s+/g, '-') === slug
       );
-      setService(foundService);
+      setService(foundService || null);
     }
   }, [params.slug]);
 
@@ -212,7 +211,7 @@ export default function OrderPage() {
             </div>
             
             <form onSubmit={handleFormSubmit} className="space-y-4">
-              {formFields.map((field: any, index: number) => (
+              {formFields.map((field: { label: string; name: string; type: string; required?: boolean; options?: string[] }, index: number) => (
                 <div key={index} className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
                     {field.label}
@@ -408,7 +407,7 @@ export default function OrderPage() {
                 {/* Simple Instructions */}
                 <div className="bg-blue-50 rounded-lg p-3">
                   <p className="text-sm text-blue-800">
-                    You'll receive an M-Pesa prompt on your phone to complete payment
+                    You&apos;ll receive an M-Pesa prompt on your phone to complete payment
                   </p>
                 </div>
               </div>

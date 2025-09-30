@@ -124,13 +124,16 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-  } catch (error: any) {
-    console.error('MPesa STK Push error:', error.response?.data || error.message);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorData = error instanceof Error && 'response' in error ? (error as { response?: { data?: unknown } }).response?.data : null;
+    
+    console.error('MPesa STK Push error:', errorData || errorMessage);
     
     return NextResponse.json(
       { 
         error: 'Payment processing failed', 
-        message: error.response?.data?.errorMessage || error.message 
+        message: (errorData && typeof errorData === 'object' && 'errorMessage' in errorData) ? (errorData as { errorMessage: string }).errorMessage : errorMessage
       },
       { status: 500 }
     );

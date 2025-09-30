@@ -53,10 +53,11 @@ export async function POST(request: NextRequest) {
       message: 'Order created successfully',
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Create order error:', error);
     return NextResponse.json(
-      { error: 'Failed to create order', message: error.message },
+      { error: 'Failed to create order', message: errorMessage },
       { status: 500 }
     );
   }
@@ -76,10 +77,11 @@ export async function GET(request: NextRequest) {
       message: 'Orders retrieved successfully',
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Get orders error:', error);
     return NextResponse.json(
-      { error: 'Failed to get orders', message: error.message },
+      { error: 'Failed to get orders', message: errorMessage },
       { status: 500 }
     );
   }

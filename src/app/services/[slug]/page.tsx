@@ -1,26 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/firebase';
+import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { services, sampleFormFields } from '@/lib/seed-data';
+import { services } from '@/lib/seed-data';
 import { formatCurrency } from '@/lib/utils';
 import Link from 'next/link';
-import { ArrowLeft, Clock, CheckCircle, Upload, FileText, Shield, CreditCard } from 'lucide-react';
+import { ArrowLeft, Clock, CheckCircle, FileText, Shield, CreditCard } from 'lucide-react';
 
 export default function ServiceDetailPage() {
   const params = useParams();
-  const router = useRouter();
-  const [user, loading] = useAuthState(auth);
-  const [service, setService] = useState<any>(null);
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<Record<string, any>>({});
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [service, setService] = useState<typeof services[0] | null>(null);
 
   useEffect(() => {
     if (params.slug) {
@@ -28,18 +20,9 @@ export default function ServiceDetailPage() {
       const foundService = services.find(s => 
         s.title.toLowerCase().replace(/\s+/g, '-') === slug
       );
-      setService(foundService);
+      setService(foundService || null);
     }
   }, [params.slug]);
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user) {
-      router.push('/auth/login');
-      return;
-    }
-    setStep(step + 1);
-  };
 
   if (!service) {
     return (

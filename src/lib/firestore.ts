@@ -5,13 +5,11 @@ import {
   getDoc,
   getDocs,
   updateDoc,
-  deleteDoc,
   query,
   where,
   orderBy,
   limit,
   onSnapshot,
-  Timestamp,
   serverTimestamp,
 } from 'firebase/firestore';
 import { 
@@ -25,7 +23,6 @@ import {
   User, 
   Service, 
   Order, 
-  OrderFile, 
   ReferralCode,
   ServiceCategory 
 } from '@/types';

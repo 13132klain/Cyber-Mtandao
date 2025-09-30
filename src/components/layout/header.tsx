@@ -6,7 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
-import { Menu, X, User, LogOut, ShoppingBag, Home, Settings, Flag } from 'lucide-react';
+import { Menu, X, User, LogOut, ShoppingBag, Home, Flag } from 'lucide-react';
 
 export function Header() {
   const [user, loading] = useAuthState(auth);

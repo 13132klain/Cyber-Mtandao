@@ -31,9 +31,9 @@ if (process.env.NODE_ENV === 'development' && process.env.USE_FIREBASE_EMULATORS
   try {
     connectFirestoreEmulator(db, 'localhost', 8080);
     connectStorageEmulator(storage, 'localhost', 9199);
-  } catch (error) {
-    // Emulators might already be connected
-    console.log('Emulators already connected or not available');
+  } catch {
+    // Emulators might already be connected or error is expected
+    // console.log('Emulators already connected or not available'); 
   }
 }
 

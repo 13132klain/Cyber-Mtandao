@@ -97,19 +97,20 @@ export function AuthForm({ mode }: AuthFormProps) {
         );
         console.log('User signed in successfully:', userCredential.user);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const firebaseError = error as { code?: string; message?: string };
       console.error('Authentication error:', error);
       
       // Handle specific Firebase auth errors
-      if (error.code === 'auth/user-not-found') {
+      if (firebaseError.code === 'auth/user-not-found') {
         setErrors({ email: 'No account found with this email address' });
-      } else if (error.code === 'auth/wrong-password') {
+      } else if (firebaseError.code === 'auth/wrong-password') {
         setErrors({ password: 'Incorrect password' });
-      } else if (error.code === 'auth/email-already-in-use') {
+      } else if (firebaseError.code === 'auth/email-already-in-use') {
         setErrors({ email: 'An account with this email already exists' });
-      } else if (error.code === 'auth/weak-password') {
+      } else if (firebaseError.code === 'auth/weak-password') {
         setErrors({ password: 'Password is too weak' });
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (firebaseError.code === 'auth/invalid-email') {
         setErrors({ email: 'Invalid email address' });
       } else {
         setErrors({ general: 'An error occurred. Please try again.' });

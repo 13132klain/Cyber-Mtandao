@@ -3,19 +3,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { 
   Search, 
-  Filter, 
   Clock, 
   Star,
   FileText,
   Building2,
   Briefcase,
-  File,
-  ArrowRight
+  File
 } from 'lucide-react';
 import { services, serviceCategories } from '@/lib/seed-data';
 import { formatCurrency } from '@/lib/utils';
@@ -209,7 +206,7 @@ export default function ServicesPage() {
               </div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">No services found</h3>
               <p className="text-gray-500 mb-4">
-                Try adjusting your search terms or filters to find what you're looking for.
+                Try adjusting your search terms or filters to find what you&apos;re looking for.
               </p>
               <Button onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
                 Clear Filters
@@ -286,7 +283,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative">
           <h2 className="text-3xl font-bold mb-4">
-            Can't find what you're looking for? 🔍
+            Can&apos;t find what you&apos;re looking for? 🔍
           </h2>
           <p className="text-xl text-white/90 mb-8">
             Contact us for custom services or if you need help with a specific document.

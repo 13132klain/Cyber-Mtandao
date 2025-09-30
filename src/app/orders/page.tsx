@@ -5,12 +5,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { 
   Search, 
-  Filter, 
   Download, 
   Eye, 
   Clock, 
@@ -140,7 +139,7 @@ export default function OrdersPage() {
     }
   };
 
-  const handleDownload = (file: any) => {
+  const handleDownload = (file: { id: string; name: string; url: string; size: number; type: string; uploadedAt: Date }) => {
     // In a real app, this would download the file
     alert(`Downloading ${file.name}`);
   };

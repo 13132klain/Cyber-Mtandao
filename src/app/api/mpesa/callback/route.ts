@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     const { CheckoutRequestID, ResultCode, ResultDesc } = stkCallback;
 
     // Extract transaction details if payment was successful
-    let transactionDetails: Record<string, any> = {};
+    let transactionDetails: Record<string, string | number> = {};
     if (ResultCode === 0 && stkCallback.CallbackMetadata) {
       const items = stkCallback.CallbackMetadata.Item;
       

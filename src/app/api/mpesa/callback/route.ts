@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateOrder } from '@/lib/firestore';
+// import { updateOrder } from '@/lib/firestore'; // TODO: Implement order updates
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,10 +12,10 @@ export async function POST(request: NextRequest) {
     }
 
     const { stkCallback } = Body;
-    const { MerchantRequestID, CheckoutRequestID, ResultCode, ResultDesc } = stkCallback;
+    const { CheckoutRequestID, ResultCode, ResultDesc } = stkCallback;
 
     // Extract transaction details if payment was successful
-    let transactionDetails = {};
+    let transactionDetails: Record<string, any> = {};
     if (ResultCode === 0 && stkCallback.CallbackMetadata) {
       const items = stkCallback.CallbackMetadata.Item;
       
@@ -39,20 +39,23 @@ export async function POST(request: NextRequest) {
 
     // Update order status based on payment result
     const paymentStatus = ResultCode === 0 ? 'completed' : 'failed';
-    const orderStatus = ResultCode === 0 ? 'paid' : 'payment_pending';
+    // const orderStatus = ResultCode === 0 ? 'paid' : 'payment_pending'; // TODO: Use when implementing order updates
 
     // Find and update the order (you'll need to implement order lookup by MerchantRequestID)
     // For now, we'll log the callback data
     console.log('Payment Status:', paymentStatus);
     console.log('Transaction Details:', transactionDetails);
+    console.log('Checkout Request ID:', CheckoutRequestID);
+    console.log('Result Description:', ResultDesc);
 
-    // TODO: Update order in Firestore
+    // TODO: Update order in Firestore when implementing order management
+    // const orderStatus = ResultCode === 0 ? 'paid' : 'payment_pending';
     // await updateOrder(orderId, {
     //   paymentStatus,
     //   status: orderStatus,
     //   paymentDetails: {
     //     method: 'mpesa',
-    //     transactionId: MerchantRequestID,
+    //     transactionId: CheckoutRequestID,
     //     ...transactionDetails,
     //     processedAt: new Date(),
     //   },

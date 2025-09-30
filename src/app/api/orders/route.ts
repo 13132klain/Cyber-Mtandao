@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createOrder } from '@/lib/firestore';
 import { generateOrderId } from '@/lib/utils';
-import { auth } from '@/lib/firebase';
+// import { auth } from '@/lib/firebase'; // TODO: Implement auth middleware
 
 export async function POST(request: NextRequest) {
   try {

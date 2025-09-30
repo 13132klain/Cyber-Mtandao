@@ -109,7 +109,6 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'STK Push sent successfully',
         data: {
-          MerchantRequestID: response.data.MerchantRequestID,
           CheckoutRequestID: response.data.CheckoutRequestID,
           ResponseCode: response.data.ResponseCode,
           ResponseDescription: response.data.ResponseDescription,

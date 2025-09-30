@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cyber Mtandao Platform
 
-## Getting Started
+A Next.js-based digital service platform for government and business services in Kenya, featuring M-Pesa payments and Firebase integration.
 
-First, run the development server:
+## 🇰🇪 Features
+
+- **Kenyan Government Services**: KRA PIN, NHIF, HELB applications
+- **M-Pesa Integration**: Secure mobile money payments via Daraja API
+- **Firebase Backend**: Authentication, Firestore database, and file storage
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Professional UI**: Clean design with Kenyan branding
+
+## 🚀 Live Demo
+
+Visit: [https://cyber-mtandao.netlify.app](https://cyber-mtandao.netlify.app)
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Backend**: Firebase (Auth, Firestore, Storage)
+- **Payments**: M-Pesa Daraja API
+- **Deployment**: Netlify
+- **Icons**: Lucide React
+
+## 📱 Services Offered
+
+1. **KRA PIN Registration** - KES 300
+2. **NHIF Registration** - KES 250  
+3. **HELB Application** - KES 400
+4. **Professional CV Writing** - KES 500
+5. **Business Registration** - KES 800
+6. **Good Conduct Certificate** - KES 350
+
+## 🔧 Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local` with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
 
-## Learn More
+# M-Pesa Daraja API
+MPESA_CONSUMER_KEY=your_consumer_key
+MPESA_CONSUMER_SECRET=your_consumer_secret
+MPESA_SHORTCODE=your_shortcode
+MPESA_PASSKEY=your_passkey
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License - Built with ❤️ in Kenya 🇰🇪
